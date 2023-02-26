@@ -1,4 +1,4 @@
-1
+
 import React from 'react'
 import './App.css'
 
@@ -9,6 +9,7 @@ import MyModal from './Comp/modal/MyModal'
 import MyButton from './Comp/button/MyButton'
 import { usePosts } from './Comp/hooks/usePosts'
 import PostService from './Comp/API/PostService'
+import Loader from './Comp/loader/Loader'
 
 
 
@@ -18,15 +19,21 @@ export default function App() {
   const [filter, setFilter] = React.useState({ sort: '', query: '' })
   const [modal, setModal] = React.useState(false)
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
+  const [isLoading, setIsLoading] = React.useState(false)
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     fetchPosts()
   }, [])
 
-async function fetchPosts(){
- const posts = await PostService.getAll()
- setPosts(posts)
-}
+  async function fetchPosts() {
+    setIsLoading(true)
+    setTimeout(async () => {
+      const posts = await PostService.getAll()
+      setPosts(posts)
+    setIsLoading(false)
+
+    }, 1000)
+  }
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
@@ -54,7 +61,11 @@ async function fetchPosts(){
       />
 
       <section>
-        <PostList remove={removePost} posts={sortedAndSearchedPosts} />
+        {
+          isLoading
+          ? <Loader />
+          :  <PostList remove={removePost} posts={sortedAndSearchedPosts} />
+        }
       </section>
     </main>
   )

@@ -13,6 +13,7 @@ const PostList = ({ posts, remove }) => {
   return (
 
     <div>
+      <h1 style={{textAlign: 'center'}}>All posts</h1>
       <TransitionGroup>
                 {posts.map((post, index) =>
                     <CSSTransition
