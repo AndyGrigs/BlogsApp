@@ -10,6 +10,7 @@ import MyButton from './Comp/button/MyButton'
 import { usePosts } from './Comp/hooks/usePosts'
 import PostService from './Comp/API/PostService'
 import Loader from './Comp/loader/Loader'
+import {useFetching} from  './Comp/hooks/useFetching'
 
 
 
@@ -19,21 +20,18 @@ export default function App() {
   const [filter, setFilter] = React.useState({ sort: '', query: '' })
   const [modal, setModal] = React.useState(false)
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
-  const [isLoading, setIsLoading] = React.useState(false)
+  
+ const [fetchPosts, isLoading, postError] = useFetching(async ()=> {
+    const posts = await PostService.getAll()
+      setPosts(posts)
+ })
 
+ 
   React.useEffect(() => {
     fetchPosts()
   }, [])
 
-  async function fetchPosts() {
-    setIsLoading(true)
-    setTimeout(async () => {
-      const posts = await PostService.getAll()
-      setPosts(posts)
-    setIsLoading(false)
 
-    }, 1000)
-  }
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
@@ -61,6 +59,7 @@ export default function App() {
       />
 
       <section>
+        {postError && <h1>{postError}</h1>}
         {
           isLoading
           ? <Loader />
