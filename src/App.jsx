@@ -16,14 +16,19 @@ import {useFetching} from  './Comp/hooks/useFetching'
 
 export default function App() {
   const [posts, setPosts] = React.useState([])
+  const [totalCount, setTotalCount] = React.useState(0)
 
   const [filter, setFilter] = React.useState({ sort: '', query: '' })
   const [modal, setModal] = React.useState(false)
+  const [limit, setLimit] = React.useState(10)
+  const [page, setPage] = React.useState(1)
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
   
  const [fetchPosts, isLoading, postError] = useFetching(async ()=> {
-    const posts = await PostService.getAll()
-      setPosts(posts)
+    const responce = await PostService.getAll(limit, page)
+      setPosts(responce.data)
+   setTotalCount(responce.headers['x-total-count'])
+   console.log(responce.headers['x-total-count'])
  })
 
  
