@@ -127,3 +127,17 @@ select {
     transform: translateX(-350px);
     transition: all 500ms ease-in;
 }
+
+.page{
+   padding: 5px 15px;
+  border: 2px solid hsl(180, 62%, 55%);
+  border-radius: 9px;
+  margin-top: 20px;
+  background: none;
+}
+
+.currentPage{
+  font-weight: bold;
+  font-size: 18px;
+  background: hsl(180, 62%, 85%) ;
+}

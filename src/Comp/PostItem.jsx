@@ -7,7 +7,7 @@ const MyItem = (props) => {
 
     <div className='post cyan'>
       <div className='post__wrapper'>
-        <h3> {props.num}.   {props.post.title}</h3>
+        <h3> {props.post.id}.   {props.post.title}</h3>
         <p className='post__body'>
           {props.post.body}
         </p>

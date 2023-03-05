@@ -3,7 +3,7 @@ import styles from './loader.module.css';
 
 const Loader = () => {
   return (
-   <div class={styles.loading}></div>
+   <div className={styles.loading}></div>
   );
 };
 

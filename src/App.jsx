@@ -11,30 +11,30 @@ import { usePosts } from './Comp/hooks/usePosts'
 import PostService from './Comp/API/PostService'
 import Loader from './Comp/loader/Loader'
 import {useFetching} from  './Comp/hooks/useFetching'
+import {getPagesCount} from './Comp/utils/pages'
 
 
 
 export default function App() {
   const [posts, setPosts] = React.useState([])
-  const [totalCount, setTotalCount] = React.useState(0)
-
+  const [totalPages, setTotalPages] = React.useState(0)
   const [filter, setFilter] = React.useState({ sort: '', query: '' })
   const [modal, setModal] = React.useState(false)
   const [limit, setLimit] = React.useState(10)
   const [page, setPage] = React.useState(1)
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
-  
+
+  const pagesArray = Array.from({length: totalPages}, (e, i) => i + 1)
  const [fetchPosts, isLoading, postError] = useFetching(async ()=> {
     const responce = await PostService.getAll(limit, page)
       setPosts(responce.data)
-   setTotalCount(responce.headers['x-total-count'])
-   console.log(responce.headers['x-total-count'])
+   const totalCount = responce.headers['x-total-count']
+   setTotalPages(getPagesCount(totalCount, limit))
  })
-
  
   React.useEffect(() => {
     fetchPosts()
-  }, [])
+  }, [page])
 
 
 
@@ -45,9 +45,11 @@ export default function App() {
 
   const removePost = (post) => {
     setPosts(posts.filter(p => p.id !== post.id))
-
   }
 
+  const changePage  = (page) => {
+    setPage(page)
+  }
 
   return (
     <main>
@@ -70,6 +72,14 @@ export default function App() {
           ? <Loader />
           :  <PostList remove={removePost} posts={sortedAndSearchedPosts} />
         }
+        <div>
+          {pagesArray.map(p => (
+      <button
+        key={p}
+        onClick={()=> changePage(p)}
+        className={page === p ? 'page currentPage' : 'page'
+        }>{p}</button>))}
+        </div>
       </section>
     </main>
   )
