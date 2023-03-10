@@ -136,8 +136,3 @@ select {
   background: none;
 }
 
-.currentPage{
-  font-weight: bold;
-  font-size: 18px;
-  background: hsl(180, 62%, 85%) ;
-}

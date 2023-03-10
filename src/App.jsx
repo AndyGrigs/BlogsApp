@@ -1,7 +1,7 @@
 
 import React from 'react'
 import './App.css'
-
+import cl from './Comp/button/myButton.module.css'
 import PostList from "./Comp/PostList.jsx"
 import PostForm from "./Comp/PostForm.jsx"
 import PostFilter from './Comp/PostFilter.jsx'
@@ -25,6 +25,7 @@ export default function App() {
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
 
   const pagesArray = Array.from({length: totalPages}, (e, i) => i + 1)
+  
  const [fetchPosts, isLoading, postError] = useFetching(async ()=> {
     const responce = await PostService.getAll(limit, page)
       setPosts(responce.data)
@@ -77,7 +78,7 @@ export default function App() {
       <button
         key={p}
         onClick={()=> changePage(p)}
-        className={page === p ? 'page currentPage' : 'page'
+        className={page === p ? [cl.currentPage, cl.myBtn ].join(' ') : cl.myBtn
         }>{p}</button>))}
         </div>
       </section>
