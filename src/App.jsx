@@ -1,7 +1,7 @@
 
 import React from 'react'
 import './App.css'
-import cl from './Comp/button/myButton.module.css'
+
 import PostList from "./Comp/PostList.jsx"
 import PostForm from "./Comp/PostForm.jsx"
 import PostFilter from './Comp/PostFilter.jsx'
@@ -12,6 +12,7 @@ import PostService from './Comp/API/PostService'
 import Loader from './Comp/loader/Loader'
 import {useFetching} from  './Comp/hooks/useFetching'
 import {getPagesCount} from './Comp/utils/pages'
+import Pagination from './Comp/pagination/Pagination'
 
 
 
@@ -24,7 +25,7 @@ export default function App() {
   const [page, setPage] = React.useState(1)
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
 
-  const pagesArray = Array.from({length: totalPages}, (e, i) => i + 1)
+
   
  const [fetchPosts, isLoading, postError] = useFetching(async ()=> {
     const responce = await PostService.getAll(limit, page)
@@ -73,14 +74,7 @@ export default function App() {
           ? <Loader />
           :  <PostList remove={removePost} posts={sortedAndSearchedPosts} />
         }
-        <div>
-          {pagesArray.map(p => (
-      <button
-        key={p}
-        onClick={()=> changePage(p)}
-        className={page === p ? [cl.currentPage, cl.myBtn ].join(' ') : cl.myBtn
-        }>{p}</button>))}
-        </div>
+       <Pagination page={page} totalPages={totalPages} changePage={changePage}/>
       </section>
     </main>
   )
