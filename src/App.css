@@ -24,9 +24,18 @@ body {
  
 }
 
+nav{
+  height: 4em;
+  width: 100vw;
+  background: lightcyan;
+  margin: 0;
+}
+
+section{
+  padding: 1rem;
+}
 
 main {
-  padding: 2rem;
   max-width: 850px;
   margin: 0 auto;
 }
