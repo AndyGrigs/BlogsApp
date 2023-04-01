@@ -7,7 +7,7 @@ const MyItem = (props) => {
    const navigate = useNavigate();
 
   const handleCommentsClick = () => {
-    navigate(`/posts/${props.post.id}/comments`);
+    navigate(`/posts/${props.post.id}`);
   };
   return (
 
