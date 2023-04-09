@@ -14,6 +14,7 @@ import Pagination from '../Comp/pagination/Pagination'
 
 
 export default function Posts() {
+  
   const [posts, setPosts] = React.useState([])
   const [totalPages, setTotalPages] = React.useState(0)
   const [filter, setFilter] = React.useState({ sort: '', query: '' })
@@ -51,7 +52,7 @@ export default function Posts() {
   }
 
   return (
-    <main>
+    <div className='allPosts'>
       <section>
 
           <MyButton onClick={() => setModal(true)}>Add post</MyButton>
@@ -78,6 +79,6 @@ export default function Posts() {
         }
        <Pagination page={page} totalPages={totalPages} changePage={changePage}/>
       </section>
-    </main>
+    </div>
   )
 }

@@ -2,13 +2,8 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Posts from './pages/Posts'
-import About from './pages/About'
-import Error from './pages/Error';
-import PostIdPage from './pages/PostIdPage'
-
 import Navbar from './Comp/navbar/Navbar'
-
+import { routes } from './router/routes'
 
 
 
@@ -18,10 +13,15 @@ export default function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<About />} />
-          <Route exact path='/posts' element={<Posts />} />
-          <Route exact path='/posts/:id' element={<PostIdPage />} />
-          <Route path='*' element={<Error />} />
+          {routes.map(route => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.component />}
+              exact={route.exact}
+            />
+          ))}
+
         </Routes>
       </Router>
 

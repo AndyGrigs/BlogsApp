@@ -6,7 +6,9 @@
   border: 2px solid hsl(180, 62%, 55%);
   border-radius: 9px;
   margin-top: 20px;
+  margin-right: 20px;
   background: none;
+  
 }
 
 .currentPage{

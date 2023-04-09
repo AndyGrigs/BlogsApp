@@ -37,7 +37,7 @@ export default function Comments() {
         ? <Loader />
         : <div>
           {comments.map(comm =>(
-          <div style={{marginTop: 15}}>
+          <div key={comm.email} style={{marginTop: 15}}>
           <h5>{comm.email}</h5>
             <p>{comm.body}</p>
           </div>

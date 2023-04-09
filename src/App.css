@@ -47,12 +47,11 @@ section{
   padding: 1rem;
 }
 
-main {
-  max-width: 850px;
+
+.allPosts{
   margin: 0 auto;
+  max-width: 850px;
 }
-
-
 
 .post p {
     color: var(--grayishBlue);
