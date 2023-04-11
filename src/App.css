@@ -24,6 +24,10 @@ body {
  
 }
 
+h1{
+  text-align: center;
+}
+
 nav{
   height: 4em;
   width: 100vw;
@@ -101,6 +105,9 @@ h3 {
 
 
 @media (min-width: 950px) {
+   .allPosts{
+     padding: 1.5em;
+   }
     .row1-container {
         display: flex;
         justify-content: center;
