@@ -1,21 +1,15 @@
 
-# A Special Web Application Designed for Learning German
+# A Web Application for receiving and adding your own posts
 
-This web application was meticulously crafted by me, specifically tailored for my students who aspire to learn German from the very beginning. My goal was to simplify the learning process, making it accessible and enjoyable for everyone.
+This application was created specifically to learn the react technology. As a backend I used json placeholder technology and received data from this service at the frontend part of my application. 
 
 ## Technologies Stack
 
 During the development of this website, I utilized a blend of modern tools and libraries to ensure a robust, scalable, and user-friendly application. Below is an overview of the key technologies employed:
 
 - **Frontend Frameworks/Libraries:** React (with TypeScript)
-- **Backhand technology:** Node.js 
-- **Database:** Mongo DB
-- **State Management:** Redux
-- **API Management:** RTK Query
-- **UI Library:** Ant Design
-- **Build Tool:** Vite
-- **Linters/Type Checkers:** ESLint, TypeScript
+- **Backhand technology:** Json placeholder 
+- **Build Tool:** create react app
 - **Package Manager:** npm
 
-These technologies were chosen for their compatibility, efficiency, and contribution to enhancing the application's performance and developer experience.
-Each technology was carefully selected based on its ability to enhance the user experience, support efficient development workflows, and contribute to the overall performance of the application.
+
